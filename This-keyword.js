@@ -15,10 +15,10 @@ console.log(this);
 // 🟢🔴🟢 `this` inside a function
 
 function x() {
-    // the below value depends on strict/non-strict mode
-    console.log(this);
-    // in strict mode - undefined
-    // in non-strict mode - refers to global window object
+  // the below value depends on strict/non-strict mode
+  console.log(this);
+  // in strict mode - undefined
+  // in non-strict mode - refers to global window object
 }
 x();
 
@@ -34,76 +34,75 @@ x();
 // 🟢🔴🟢 `this` value depends on how  `function` is called
 
 x(); // undefined
-window.x(); // global window object
+// window.x(); // global window object
 
 // ----------------------------------------------------------------------------
 // 🟢🔴🟢 `this` inside a object's method
 
 const obj = {
-    a: 10,
-    x: function () {
-        console.log(this); // {a: 10, x: f()}
-        console.log(this.a); // 10
-    },
+  a: 10,
+  x: function () {
+    console.log(this); // {a: 10, x: f()}
+    console.log(this.a); // 10
+  },
 };
 obj.x(); // value of `this` is referring to current object i.e. `obj`
 
 // ----------------------------------------------------------------------------
 // 🟢🔴🟢 `this` for `call`, `apply` & `bind` methods
 
-// const student = {
-//   name: "Alok",
-//   printName: function () {
-//     console.log(this.name);
-//   },
-// };
-// student.printName(); // Alok
+const student = {
+  name: "Alok",
+  printName: function () {
+    console.log(this.name);
+  },
+};
+student.printName(); // Alok
 
-// const student2 = {
-//   name: "Kajal",
-// };
+const student2 = {
+  name: "Kajal",
+};
 // student2.printName(); // throw error
 
-// // ❓ how to re-use printName method from `student` object
-// student.printName.call(student2); // Kajal
-// // Above `call` method is taking the value of `this` keyword
-// // So, Inside `printName` method value of `this` is now `student2` object
+// how to re-use printName method from `student` object ❓
 
-// // So, call, bind and apply is used to set the value of this keyword.
-// ```
+student.printName.call(student2); // Kajal
 
-// ## `this` inside arrow function
+// Above `call` method is taking the value of `this` keyword
+// So, Inside `printName` method value of `this` is now `student2` object
+// So, call, bind and apply is used to set the value of this keyword.
 
-//         Arrow function doesn't have their own `this` value, they take the value from enclosing lexical context.
+// ----------------------------------------------------------------------------
+// 🟢🔴🟢 `this` inside arrow function
 
-//             ```js
-// const obj = {
-//   a: 10,
-//   x: () => {
-//     console.log(this); // window object
-//     // Above the value of `this` won't be obj anymore instead it will be enclosing lexical context i.e. window object in current scenario.
-//   },
-// };
-// obj.x();
+// Arrow function doesn't have their own `this` value, they take the value from enclosing lexical context.
 
-// const obj2 = {
-//   a: 10,
-//   x: function () {
-//     const y = () => {
-//       console.log(this);
-//       // Above the value of `this` will be obj2 as function y's enclosing lexical context is function `x`.
-//     };
-//     y();
-//   },
-// };
-// obj2.x();
-// ```
+const obj2 = {
+  a: 10,
+  x: () => {
+    console.log(this); // window object
+    // Above the value of `this` won't be obj anymore instead it will be enclosing lexical context i.e. window object in current scenario.
+  },
+};
+obj2.x();
 
-// ## `this` inside DOM
+const obj3 = {
+  b: 10,
+  x: function () {
+    const y = () => {
+      console.log(this);
+      // Above the value of `this` will be obj3 as function y's enclosing lexical context is function `x`.
+    };
+    y();
+  },
+};
+obj3.x();
 
-//     > It refers to HTML element.
 
-// ```html
-// <button onclick="alert(this)">Click Me</button>
+// ----------------------------------------------------------------------------
+// 🟢🔴🟢 `this` inside DOM
+
+// > It refers to HTML element.
+
+{/* <button onclick="alert(this)">Click Me</button> */}
 // <!-- [object HTMLButtonElement] Button element -->
-// ```
