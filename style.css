@@ -1,0 +1,11 @@
+.div,
+.form,
+.btn {
+  border: 1px solid red;
+  padding: 16px;
+}
+
+.btn {
+  margin-left: 16px;
+  cursor: pointer;
+}

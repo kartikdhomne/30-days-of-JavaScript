@@ -4,7 +4,7 @@
 // 1) Var is Global or function scope variable
 // 2) Var variable get hoisted and undefined value is assigned
 // 3) It was first variable introduced before ES6
-// 4) Varible can be called before assigning value
+// 4) Variable can be called before assigning value
 // 5) Var variable can be reassigned and redeclared
 
 // Let :-
