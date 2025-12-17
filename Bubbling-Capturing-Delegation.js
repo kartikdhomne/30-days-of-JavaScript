@@ -59,10 +59,18 @@ form.addEventListener(
     }
 );
 
-div.addEventListener("click", func);
-button.addEventListener("click", func);
-form.addEventListener("click", func);
+// div.addEventListener("click", func);
+// button.addEventListener("click", func);
+// form.addEventListener("click", func);
 
 // function func(event) {
 //     alert("CurrentTarget = " + event.currentTarget.tagName + ", target = " + event.target.tagName + ", this = " + this.tagName)
 // }
+
+
+// Event Delegation
+document.getElementById("actions").addEventListener("click", (e) => {
+    if (e.target.tagName === "BUTTON") {
+        console.log(e.target.className)
+    }
+})
