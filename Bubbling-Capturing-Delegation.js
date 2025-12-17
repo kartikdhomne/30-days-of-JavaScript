@@ -28,7 +28,7 @@ const button = document.querySelector(".btn");
 div.addEventListener(
     "click",
     function (e) {
-        e.stopPropagation() // To stop Propagation
+        e.stopPropagation(); // To stop Propagation
         alert("div clicked");
     },
     // Only to show capturing
@@ -39,7 +39,7 @@ div.addEventListener(
 button.addEventListener(
     "click",
     function (e) {
-        e.stopPropagation() // To stop Propagation
+        e.stopPropagation(); // To stop Propagation
         alert("button clicked");
     },
 
@@ -67,10 +67,27 @@ form.addEventListener(
 //     alert("CurrentTarget = " + event.currentTarget.tagName + ", target = " + event.target.tagName + ", this = " + this.tagName)
 // }
 
-
 // Event Delegation
 document.getElementById("actions").addEventListener("click", (e) => {
-    if (e.target.tagName === "BUTTON") {
-        console.log(e.target.className)
+    const button = e.target.closest("button");
+    if (button) {
+        alert(`You clicked on ${button.className}`);
     }
+});
+
+
+//Event Delegation Modal Popup
+const container = document.querySelector(".modalContainer");
+const buttonn = document.querySelector(".modalButton");
+
+buttonn.addEventListener("click", () => {
+    toggleModal(true)
+})
+
+function toggleModal(toggle) {
+    container.style.display = toggle ? "flex" : "none"
+}
+
+container.addEventListener("click", (e) => {
+    if (e.target.className === "modalContainer") toggleModal(false)
 })
